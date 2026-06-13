@@ -5,12 +5,12 @@ import { Reveal } from "@/components/reveal";
 import { Btn, Pin } from "@/components/ui";
 
 const TODAY = [
-  { icon: Database, bg: "#EAF1FB", name: "Generic CRM", pain: "$45/agent/mo" },
+  { icon: Database, bg: "#EAF1FB", name: "Generic CRM", pain: "Not built for property" },
   { icon: Table2, bg: "#E9F6EE", name: "Listings spreadsheet", pain: "Always outdated" },
   { icon: Mail, bg: "#FBEFE3", name: "Portal lead inboxes", pain: "Leads go cold" },
   { icon: MessageCircle, bg: "#E6F4F1", name: "WhatsApp on phones", pain: "Zero visibility" },
-  { icon: Megaphone, bg: "#F3ECFA", name: "Marketing tool", pain: "$29/mo" },
-  { icon: Sigma, bg: "#FBF3DC", name: "Commission tracker", pain: "Month-end chaos" },
+  { icon: Megaphone, bg: "#F3ECFA", name: "Marketing tool", pain: "Disconnected" },
+  { icon: Sigma, bg: "#FBF3DC", name: "Commission tracker", pain: "Monthly chaos" },
 ];
 
 const INSIDE = [
