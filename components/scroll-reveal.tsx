@@ -59,13 +59,14 @@ function Card({
   data: (typeof SHOWCASE)[number];
 }) {
   const seg = 1 / n;
-  const appearFrom = (i - 0.85) * seg;
-  const appearTo = i * seg;
-  const recedeFrom = (i + 0.9) * seg;
-  const recedeTo = (i + 1.7) * seg;
   const isLast = i === n - 1;
-
-  const range = isLast ? [appearFrom, appearTo] : [appearFrom, appearTo, recedeFrom, recedeTo];
+  // Scroll-linked transforms run through the Web Animations API, whose keyframe
+  // offsets must be within [0,1] and strictly increasing — clamp + dedupe here.
+  const range = ramp(
+    isLast
+      ? [(i - 0.85) * seg, i * seg]
+      : [(i - 0.85) * seg, i * seg, (i + 0.9) * seg, (i + 1.7) * seg],
+  );
   const opacity = useTransform(progress, range, isLast ? [0, 1] : [0, 1, 1, 0.25]);
   const y = useTransform(progress, range, isLast ? [90, 0] : [90, 0, 0, -80]);
   const scale = useTransform(progress, range, isLast ? [0.9, 1] : [0.9, 1, 1, 0.85]);
@@ -84,6 +85,18 @@ function Card({
       </Frame>
     </motion.div>
   );
+}
+
+/** Clamp breakpoints into [0,1] and force strictly-increasing offsets. */
+function ramp(points: number[]): number[] {
+  const eps = 1e-4;
+  let prev = -Infinity;
+  return points.map((p) => {
+    let v = Math.min(1, Math.max(0, p));
+    if (v <= prev) v = Math.min(1, prev + eps);
+    prev = v;
+    return v;
+  });
 }
 
 function Caption({ headline, body }: { headline: string; body: string }) {
