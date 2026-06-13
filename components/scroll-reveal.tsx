@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
-import { SHOWCASE, type Focus } from "@/lib/screens";
+import { SHOWCASE, screenSrc, type Focus } from "@/lib/screens";
 import { useMotionPref } from "@/components/providers";
 
 /**
@@ -139,7 +139,7 @@ function Frame({
       </div>
       <div className={`relative overflow-hidden ${fill ? "h-[calc(100%-34px)]" : "aspect-[16/9.4]"}`}>
         <Image
-          src={`/screens/${file}`}
+          src={screenSrc(file)}
           alt={alt}
           fill
           priority={priority}

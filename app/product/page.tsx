@@ -14,6 +14,7 @@ import { Eyebrow, SectionHead, Btn } from "@/components/ui";
 import { Reveal, Stagger, StaggerItem } from "@/components/reveal";
 import { CtaBand } from "@/components/cta-band";
 import { CountUp } from "@/components/count-up";
+import { screenSrc } from "@/lib/screens";
 
 export const metadata: Metadata = {
   title: "Product",
@@ -184,7 +185,7 @@ export default function ProductPage() {
                   </div>
                   <div className="relative aspect-[16/9.6] overflow-hidden">
                     <Image
-                      src={`/screens/${m.shot}`}
+                      src={screenSrc(m.shot)}
                       alt={m.alt}
                       fill
                       unoptimized

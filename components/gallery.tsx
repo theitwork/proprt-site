@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import { ALL_SCREENS, SCREEN_GROUPS } from "@/lib/screens";
+import { ALL_SCREENS, SCREEN_GROUPS, screenSrc } from "@/lib/screens";
 
 const ZOOM = 2.4;
 
@@ -70,7 +70,7 @@ export function Gallery() {
                 >
                   <div className="relative aspect-[16/9.6] overflow-hidden bg-mist">
                     <Image
-                      src={`/screens/${s.file}`}
+                      src={screenSrc(s.file)}
                       alt={`${s.title} — ${s.caption}`}
                       fill
                       loading="lazy"
@@ -136,7 +136,7 @@ export function Gallery() {
                 }}
               >
                 <Image
-                  src={`/screens/${ALL_SCREENS[idx].file}`}
+                  src={screenSrc(ALL_SCREENS[idx].file)}
                   alt={ALL_SCREENS[idx].title}
                   fill
                   unoptimized

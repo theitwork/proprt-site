@@ -4,6 +4,7 @@ import { Building2, Construction, KeyRound, UserRound, Check } from "lucide-reac
 import { Eyebrow, Btn } from "@/components/ui";
 import { Reveal } from "@/components/reveal";
 import { CtaBand } from "@/components/cta-band";
+import { screenSrc } from "@/lib/screens";
 
 export const metadata: Metadata = {
   title: "Solutions",
@@ -146,7 +147,7 @@ export default function SolutionsPage() {
                   </div>
                   <div className="relative aspect-[16/9.6] overflow-hidden">
                     <Image
-                      src={`/screens/${s.shot}`}
+                      src={screenSrc(s.shot)}
                       alt={s.alt}
                       fill
                       unoptimized

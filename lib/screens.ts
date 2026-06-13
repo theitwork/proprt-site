@@ -1,3 +1,9 @@
+import { BASE_PATH } from "@/lib/base-path";
+
+/** Resolve a /public/screens file to its served URL. next/image does NOT
+ *  prepend basePath to `unoptimized` images, so do it explicitly here. */
+export const screenSrc = (file: string) => `${BASE_PATH}/screens/${file}`;
+
 export type Screen = { file: string; title: string; caption: string };
 export type ScreenGroup = { id: string; title: string; tag: string; screens: Screen[] };
 
