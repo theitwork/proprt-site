@@ -48,31 +48,31 @@ export function ScrollReveal() {
   }
 
   return (
-    <div ref={ref} style={{ height: `${N * 80 + 20}vh` }} className="relative">
+    <div ref={ref} style={{ height: `${N * 110 + 20}vh` }} className="relative">
       <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden">
         {/* glow behind the stack */}
         <div className="pointer-events-none absolute h-[58vh] w-[60vw] max-w-[760px] rounded-full bg-[radial-gradient(closest-side,rgba(253,211,59,0.16),transparent)]" />
+
+        {/* single caption ABOVE the stage, crossfading to the active screen */}
+        <div className="relative mb-6 h-[124px] w-full max-w-[640px] px-4 sm:h-[112px]">
+          {HOME_REVEAL.map((s, i) => (
+            <motion.div
+              key={s.screen.file}
+              initial={false}
+              animate={{ opacity: i === active ? 1 : 0, y: i === active ? 0 : -10 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute inset-x-0 bottom-0 px-1 text-center"
+              style={{ pointerEvents: i === active ? "auto" : "none" }}
+            >
+              <CaptionBody index={i} headline={s.headline} body={s.body} />
+            </motion.div>
+          ))}
+        </div>
 
         {/* image stack */}
         <div className="relative grid w-full max-w-[1120px] px-3 sm:px-6">
           {HOME_REVEAL.map((s, i) => (
             <Card key={s.screen.file} progress={scrollYProgress} i={i} data={s} />
-          ))}
-        </div>
-
-        {/* single caption below, crossfading to the active screen */}
-        <div className="relative mt-6 h-[132px] w-full max-w-[640px] px-4 sm:h-[120px]">
-          {HOME_REVEAL.map((s, i) => (
-            <motion.div
-              key={s.screen.file}
-              initial={false}
-              animate={{ opacity: i === active ? 1 : 0, y: i === active ? 0 : 10 }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute inset-x-0 top-0 px-1 text-center"
-              style={{ pointerEvents: i === active ? "auto" : "none" }}
-            >
-              <CaptionBody index={i} headline={s.headline} body={s.body} />
-            </motion.div>
           ))}
         </div>
       </div>
@@ -85,15 +85,17 @@ function Card({ progress, i, data }: { progress: MotionValue<number>; i: number;
   const isLast = i === N - 1;
   // Scroll-linked transforms run through the Web Animations API, whose keyframe
   // offsets must be within [0,1] and strictly increasing — clamp + dedupe here.
+  // Reveal quickly, then HOLD the screen fully clear for most of its slot
+  // (~0.6 of a segment) before the next one starts revealing, then recede.
   const range = ramp(
     isLast
-      ? [(i - 0.85) * seg, i * seg]
-      : [(i - 0.85) * seg, i * seg, (i + 0.9) * seg, (i + 1.7) * seg],
+      ? [(i - 0.35) * seg, (i + 0.05) * seg]
+      : [(i - 0.35) * seg, (i + 0.05) * seg, (i + 0.78) * seg, (i + 1.0) * seg],
   );
   const opacity = useTransform(progress, range, isLast ? [0, 1] : [0, 1, 1, 0.25]);
-  const y = useTransform(progress, range, isLast ? [90, 0] : [90, 0, 0, -80]);
-  const scale = useTransform(progress, range, isLast ? [0.9, 1] : [0.9, 1, 1, 0.85]);
-  const rotateX = useTransform(progress, range, isLast ? [6, 0] : [6, 0, 0, 4]);
+  const y = useTransform(progress, range, isLast ? [80, 0] : [80, 0, 0, -70]);
+  const scale = useTransform(progress, range, isLast ? [0.92, 1] : [0.92, 1, 1, 0.88]);
+  const rotateX = useTransform(progress, range, isLast ? [5, 0] : [5, 0, 0, 3]);
 
   return (
     <motion.div

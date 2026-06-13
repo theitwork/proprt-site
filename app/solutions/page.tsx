@@ -111,7 +111,9 @@ export default function SolutionsPage() {
             <div
               key={s.id}
               id={s.id}
-              className="grid scroll-mt-24 items-center gap-8 border-b border-line py-[54px] last:border-b-0 lg:grid-cols-2 lg:gap-16"
+              className={`grid scroll-mt-24 items-center gap-8 border-b border-line py-[54px] last:border-b-0 lg:gap-16 ${
+                i % 2 ? "lg:grid-cols-[2fr_1fr]" : "lg:grid-cols-[1fr_2fr]"
+              }`}
             >
               <Reveal className={i % 2 ? "lg:order-2" : ""}>
                 <span

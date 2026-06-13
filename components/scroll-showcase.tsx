@@ -43,9 +43,9 @@ export function ScrollShowcase() {
   }
 
   return (
-    <div ref={ref} style={{ height: `${n * 90}vh` }} className="relative">
+    <div ref={ref} style={{ height: `${n * 120}vh` }} className="relative">
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-        <div className="mx-auto grid w-full max-w-[1180px] items-center gap-10 px-6 lg:grid-cols-[0.72fr_1.4fr]">
+        <div className="mx-auto grid w-full max-w-[1320px] items-center gap-10 px-6 lg:grid-cols-[1fr_2fr]">
           {/* captions + progress */}
           <div className="relative">
             <div className="mb-7 flex gap-[6px]" role="tablist" aria-label="Showcase progress">
