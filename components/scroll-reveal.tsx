@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
-import { SHOWCASE, screenSrc, type Focus } from "@/lib/screens";
+import { HOME_REVEAL, SCREEN_ASPECT, screenSrc, type Reveal } from "@/lib/screens";
 import { useMotionPref } from "@/components/providers";
 
 /**
@@ -15,15 +15,15 @@ export function ScrollReveal() {
   const ref = useRef<HTMLDivElement>(null);
   const reduced = !useMotionPref().animate;
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
-  const n = SHOWCASE.length;
+  const n = HOME_REVEAL.length;
 
   if (reduced) {
-    // static fallback: a simple responsive grid of every showcase screen
+    // static fallback: a simple responsive grid of every reveal screen
     return (
       <div className="mx-auto grid max-w-[1180px] gap-8 px-6 sm:grid-cols-2">
-        {SHOWCASE.map((s) => (
+        {HOME_REVEAL.map((s) => (
           <div key={s.screen.file}>
-            <Frame file={s.screen.file} alt={s.headline} focus={s.focus} priority={false}>
+            <Frame file={s.screen.file} alt={s.headline} priority={false}>
               <Caption headline={s.headline} body={s.body} />
             </Frame>
           </div>
@@ -37,8 +37,8 @@ export function ScrollReveal() {
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
         {/* glow behind the stack */}
         <div className="pointer-events-none absolute h-[60vh] w-[60vw] max-w-[760px] rounded-full bg-[radial-gradient(closest-side,rgba(253,211,59,0.16),transparent)]" />
-        <div className="relative h-[clamp(340px,62vh,620px)] w-full max-w-[1040px] px-6">
-          {SHOWCASE.map((s, i) => (
+        <div className="relative grid w-full max-w-[1040px] px-4 sm:px-6">
+          {HOME_REVEAL.map((s, i) => (
             <Card key={s.screen.file} progress={scrollYProgress} i={i} n={n} data={s} />
           ))}
         </div>
@@ -56,7 +56,7 @@ function Card({
   progress: MotionValue<number>;
   i: number;
   n: number;
-  data: (typeof SHOWCASE)[number];
+  data: Reveal;
 }) {
   const seg = 1 / n;
   const isLast = i === n - 1;
@@ -74,10 +74,10 @@ function Card({
 
   return (
     <motion.div
-      style={{ opacity, y, scale, rotateX, zIndex: i, transformPerspective: 1400 }}
-      className="absolute inset-x-6 inset-y-0"
+      style={{ opacity, y, scale, rotateX, zIndex: i, transformPerspective: 1400, gridArea: "1 / 1" }}
+      className="min-w-0"
     >
-      <Frame file={data.screen.file} alt={data.headline} focus={data.focus} priority={i === 0} fill>
+      <Frame file={data.screen.file} alt={data.headline} priority={i === 0}>
         <span className="absolute right-4 top-[44px] z-10 rounded-full bg-ink/80 px-[10px] py-1 text-[11px] font-extrabold tracking-[0.08em] text-white backdrop-blur">
           {String(i + 1).padStart(2, "0")} / {String(n).padStart(2, "0")}
         </span>
@@ -113,31 +113,23 @@ function Caption({ headline, body }: { headline: string; body: string }) {
 function Frame({
   file,
   alt,
-  focus,
   priority,
-  fill = false,
   children,
 }: {
   file: string;
   alt: string;
-  focus?: Focus;
   priority: boolean;
-  fill?: boolean;
   children?: React.ReactNode;
 }) {
   return (
-    <div
-      className={`relative overflow-hidden rounded-[18px] border border-line bg-white shadow-big ${
-        fill ? "h-full" : ""
-      }`}
-    >
+    <div className="relative overflow-hidden rounded-[18px] border border-line bg-white shadow-big">
       <div className="flex items-center gap-2 border-b border-line bg-mist px-4 py-[9px]">
         <span className="h-[9px] w-[9px] rounded-full bg-[#F6C9C4]" />
         <span className="h-[9px] w-[9px] rounded-full bg-[#F6E3B4]" />
         <span className="h-[9px] w-[9px] rounded-full bg-[#CBE7D2]" />
         <span className="ml-2 truncate text-[11px] text-ink-3">company.proprt.app</span>
       </div>
-      <div className={`relative overflow-hidden ${fill ? "h-[calc(100%-34px)]" : "aspect-[16/9.4]"}`}>
+      <div className="relative w-full overflow-hidden" style={{ aspectRatio: SCREEN_ASPECT }}>
         <Image
           src={screenSrc(file)}
           alt={alt}
@@ -145,12 +137,7 @@ function Frame({
           priority={priority}
           unoptimized
           sizes="(max-width: 1024px) 100vw, 1040px"
-          className="object-cover"
-          style={
-            focus
-              ? { objectPosition: focus.pos, transform: `scale(${focus.zoom})`, transformOrigin: focus.pos }
-              : { objectPosition: "top" }
-          }
+          className="object-cover object-top"
         />
       </div>
       {children}

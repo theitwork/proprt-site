@@ -192,6 +192,10 @@ export const SCREEN_GROUPS: ScreenGroup[] = [
 
 export const ALL_SCREENS: Screen[] = SCREEN_GROUPS.flatMap((g) => g.screens);
 
+/** Native pixel aspect of every product screenshot (1901×990). Frames use this
+ *  so the whole screen fits with no awkward cropping. */
+export const SCREEN_ASPECT = "1901 / 990";
+
 /** A focal crop into a screenshot: CSS object-position + zoom factor. */
 export type Focus = { pos: string; zoom: number };
 
@@ -233,5 +237,42 @@ export const SHOWCASE: { screen: Screen; headline: string; body: string; focus: 
     headline: "Insight without spreadsheets",
     body: "For-sale value, gross commission and pipeline — reports that arrive on schedule.",
     focus: { pos: "48% 22%", zoom: 1.5 },
+  },
+];
+
+export type Reveal = { screen: Screen; headline: string; body: string };
+
+/** Homepage scroll-reveal — a DISTINCT set of modules from the /tour highlights
+ *  and the /product deep-dives, so each page shows different parts of the app. */
+export const HOME_REVEAL: Reveal[] = [
+  {
+    screen: S("contacts.png", "Contacts", ""),
+    headline: "One CRM for every owner and client",
+    body: "Eight contact types, configurable columns and automatic duplicate detection — the whole relationship in one place.",
+  },
+  {
+    screen: S("requests.png", "Requests", ""),
+    headline: "A pipeline for every requirement",
+    body: "Track each buyer and renter brief through a six-stage pipeline, from new enquiry to won.",
+  },
+  {
+    screen: S("maps.png", "Maps", ""),
+    headline: "See your inventory on the map",
+    body: "Every listing pinned by area — select and act on properties geographically.",
+  },
+  {
+    screen: S("whatsapp.png", "WhatsApp", ""),
+    headline: "On-brand WhatsApp in seconds",
+    body: "Reach clients on the channel they actually use, with a reusable template library.",
+  },
+  {
+    screen: S("commissions.png", "Commissions", ""),
+    headline: "Commissions that always add up",
+    body: "Per-agent splits tracked automatically — no more reconciling spreadsheets at month end.",
+  },
+  {
+    screen: S("team-performance.png", "Team", ""),
+    headline: "Know how every agent is performing",
+    body: "Activity, output and targets across agents and teams — at a glance.",
   },
 ];

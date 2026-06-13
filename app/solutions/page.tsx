@@ -4,7 +4,7 @@ import { Building2, Construction, KeyRound, UserRound, Check } from "lucide-reac
 import { Eyebrow, Btn } from "@/components/ui";
 import { Reveal } from "@/components/reveal";
 import { CtaBand } from "@/components/cta-band";
-import { screenSrc } from "@/lib/screens";
+import { screenSrc, SCREEN_ASPECT } from "@/lib/screens";
 
 export const metadata: Metadata = {
   title: "Solutions",
@@ -145,20 +145,15 @@ export default function SolutionsPage() {
                     <span className="h-[9px] w-[9px] rounded-full bg-[#CBE7D2]" />
                     <span className="ml-2 truncate text-[11px] text-ink-3">company.proprt.app</span>
                   </div>
-                  <div className="relative aspect-[16/9.6] overflow-hidden">
+                  <div className="relative w-full overflow-hidden" style={{ aspectRatio: SCREEN_ASPECT }}>
                     <Image
                       src={screenSrc(s.shot)}
                       alt={s.alt}
                       fill
                       unoptimized
                       loading={i === 0 ? "eager" : "lazy"}
-                      sizes="(max-width: 1024px) 100vw, 1120px"
-                      className="object-cover"
-                      style={{
-                        objectPosition: s.focus.pos,
-                        transform: `scale(${s.focus.zoom})`,
-                        transformOrigin: s.focus.pos,
-                      }}
+                      sizes="(max-width: 1024px) 100vw, 560px"
+                      className="object-cover object-top"
                     />
                   </div>
                 </div>

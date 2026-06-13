@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
-import { SHOWCASE, screenSrc, type Focus } from "@/lib/screens";
+import { SHOWCASE, SCREEN_ASPECT, screenSrc } from "@/lib/screens";
 import { useMotionPref } from "@/components/providers";
 
 /**
@@ -35,7 +35,7 @@ export function ScrollShowcase() {
               <h3 className="mb-2 text-[26px] font-extrabold tracking-[-0.02em]">{s.headline}</h3>
               <p className="text-[15.5px] leading-[1.65] text-ink-2">{s.body}</p>
             </div>
-            <Frame file={s.screen.file} alt={s.headline} priority={false} focus={s.focus} />
+            <Frame file={s.screen.file} alt={s.headline} priority={false} />
           </div>
         ))}
       </div>
@@ -81,26 +81,24 @@ export function ScrollShowcase() {
           </div>
 
           {/* screenshot stage */}
-          <motion.div style={{ y: frameY }} className="relative">
-            <div className="absolute -inset-6 -z-10 rounded-[32px] bg-[radial-gradient(closest-side,rgba(253,211,59,0.18),transparent)]" />
-            <div className="relative aspect-[16/10] w-full">
-              {SHOWCASE.map((s, i) => (
-                <motion.div
-                  key={s.screen.file}
-                  initial={false}
-                  animate={{
-                    opacity: i === active ? 1 : 0,
-                    scale: i === active ? 1 : 0.96,
-                    rotateX: i === active ? 0 : 4,
-                  }}
-                  transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                  style={{ transformPerspective: 1400 }}
-                  className="absolute inset-0"
-                >
-                  <Frame file={s.screen.file} alt={s.headline} priority={i === 0} fill focus={s.focus} />
-                </motion.div>
-              ))}
-            </div>
+          <motion.div style={{ y: frameY }} className="relative grid">
+            <div className="pointer-events-none absolute -inset-6 -z-10 rounded-[32px] bg-[radial-gradient(closest-side,rgba(253,211,59,0.18),transparent)]" />
+            {SHOWCASE.map((s, i) => (
+              <motion.div
+                key={s.screen.file}
+                initial={false}
+                animate={{
+                  opacity: i === active ? 1 : 0,
+                  scale: i === active ? 1 : 0.96,
+                  rotateX: i === active ? 0 : 4,
+                }}
+                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                style={{ transformPerspective: 1400, gridArea: "1 / 1" }}
+                className="min-w-0"
+              >
+                <Frame file={s.screen.file} alt={s.headline} priority={i === 0} />
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </div>
@@ -108,28 +106,16 @@ export function ScrollShowcase() {
   );
 }
 
-function Frame({
-  file,
-  alt,
-  priority,
-  fill = false,
-  focus,
-}: {
-  file: string;
-  alt: string;
-  priority: boolean;
-  fill?: boolean;
-  focus?: Focus;
-}) {
+function Frame({ file, alt, priority }: { file: string; alt: string; priority: boolean }) {
   return (
-    <div className={`overflow-hidden rounded-[18px] border border-line bg-white shadow-big ${fill ? "h-full" : ""}`}>
+    <div className="overflow-hidden rounded-[18px] border border-line bg-white shadow-big">
       <div className="flex items-center gap-2 border-b border-line bg-mist px-4 py-[9px]">
         <span className="h-[9px] w-[9px] rounded-full bg-[#F6C9C4]" />
         <span className="h-[9px] w-[9px] rounded-full bg-[#F6E3B4]" />
         <span className="h-[9px] w-[9px] rounded-full bg-[#CBE7D2]" />
         <span className="ml-2 truncate text-[11px] text-ink-3">company.proprt.app</span>
       </div>
-      <div className={`overflow-hidden ${fill ? "relative h-[calc(100%-34px)]" : "relative aspect-[16/9.4]"}`}>
+      <div className="relative w-full overflow-hidden" style={{ aspectRatio: SCREEN_ASPECT }}>
         <Image
           src={screenSrc(file)}
           alt={alt}
@@ -137,12 +123,7 @@ function Frame({
           priority={priority}
           unoptimized
           sizes="(max-width: 1024px) 100vw, 1200px"
-          className="object-cover"
-          style={
-            focus
-              ? { objectPosition: focus.pos, transform: `scale(${focus.zoom})`, transformOrigin: focus.pos }
-              : { objectPosition: "top" }
-          }
+          className="object-cover object-top"
         />
       </div>
     </div>

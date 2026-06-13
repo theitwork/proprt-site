@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import { ALL_SCREENS, SCREEN_GROUPS, screenSrc } from "@/lib/screens";
+import { ALL_SCREENS, SCREEN_GROUPS, screenSrc, SCREEN_ASPECT } from "@/lib/screens";
 
 const ZOOM = 2.4;
 
@@ -68,7 +68,7 @@ export function Gallery() {
                   onClick={() => setIdx(start + i)}
                   className="group cursor-zoom-in overflow-hidden rounded-[14px] border border-line bg-white text-left shadow-soft transition-all duration-200 hover:-translate-y-[3px] hover:border-gold-deep hover:shadow-mid"
                 >
-                  <div className="relative aspect-[16/9.6] overflow-hidden bg-mist">
+                  <div className="relative w-full overflow-hidden bg-mist" style={{ aspectRatio: SCREEN_ASPECT }}>
                     <Image
                       src={screenSrc(s.file)}
                       alt={`${s.title} — ${s.caption}`}
