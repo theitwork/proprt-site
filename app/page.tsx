@@ -13,6 +13,7 @@ import { Faq, HOME_FAQ } from "@/components/faq";
 import { CtaBand } from "@/components/cta-band";
 import { HeroHighlight } from "@/components/hero-highlight";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { Spotlight } from "@/components/spotlight";
 
 const AVATARS = [
   { i: "RK", bg: "#FDE89A" },
@@ -137,6 +138,18 @@ export default function Home() {
           />
         </div>
         <FeatureRows />
+      </section>
+
+      {/* ================= SPOTLIGHT ================= */}
+      <section className="py-24">
+        <div className="mx-auto max-w-[1180px] px-6">
+          <SectionHead
+            eyebrow="Where deals are won"
+            title="The screens that close buyers"
+            sub="A complete property page, a side-by-side compare for indecisive buyers, and a one-click published listing on your own website — the moments that turn interest into a signed deal."
+          />
+          <Spotlight />
+        </div>
       </section>
 
       {/* ================= AUDIENCES ================= */}
