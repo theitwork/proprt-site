@@ -12,6 +12,7 @@ import { IntegrationsGrid } from "@/components/integrations";
 import { Faq, HOME_FAQ } from "@/components/faq";
 import { CtaBand } from "@/components/cta-band";
 import { HeroHighlight } from "@/components/hero-highlight";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 const AVATARS = [
   { i: "RK", bg: "#FDE89A" },
@@ -100,6 +101,18 @@ export default function Home() {
           />
         </div>
         <TestimonialMarquee />
+      </section>
+
+      {/* ================= SCROLL REVEAL ================= */}
+      <section className="py-24">
+        <div className="mx-auto max-w-[1180px] px-6">
+          <SectionHead
+            eyebrow="A guided look"
+            title="Every screen, revealed as you scroll"
+            sub="Keep scrolling — the real product builds up in front of you, from the agency dashboard to a closed deal."
+          />
+        </div>
+        <ScrollReveal />
       </section>
 
       {/* ================= STACK ================= */}
