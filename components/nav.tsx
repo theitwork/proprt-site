@@ -122,7 +122,7 @@ export function Nav() {
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             aria-label="Back to top"
-            className="fixed bottom-5 left-5 z-[120] hidden cursor-pointer items-center gap-2 rounded-full border border-line-2 bg-white/90 px-4 py-[10px] text-[13px] font-bold text-ink shadow-mid backdrop-blur-md transition-colors hover:border-gold-deep md:flex"
+            className="fixed bottom-[72px] right-5 z-[120] hidden cursor-pointer items-center gap-2 rounded-full border border-line-2 bg-white/90 px-4 py-[10px] text-[13px] font-bold text-ink shadow-mid backdrop-blur-md transition-colors hover:border-gold-deep md:flex"
           >
             <ArrowUp className="h-[15px] w-[15px] text-gold-deep" />
             Top
