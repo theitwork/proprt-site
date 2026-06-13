@@ -4,6 +4,7 @@ import "./globals.css";
 import { Providers } from "@/components/providers";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import { BASE_PATH } from "@/lib/base-path";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -19,8 +20,8 @@ export const metadata: Metadata = {
   description:
     "Proprt brings listings, leads, deals, marketing and commissions into one platform built for real estate agencies. Capture every lead, match buyers to inventory, and close faster.",
   icons: {
-    icon: [{ url: "/brand/favicon-32.png", sizes: "32x32", type: "image/png" }],
-    apple: "/brand/proprt-app-icon-180.png",
+    icon: [{ url: `${BASE_PATH}/brand/favicon-32.png`, sizes: "32x32", type: "image/png" }],
+    apple: `${BASE_PATH}/brand/proprt-app-icon-180.png`,
   },
 };
 

@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/reveal";
+import { BASE_PATH } from "@/lib/base-path";
 
 /** The official Proprt pin mark (transparent, self-contained — works on light & dark). */
 export function Pin({ className = "h-[30px] w-[30px]" }: { className?: string }) {
   // eslint-disable-next-line @next/next/no-img-element
-  return <img src="/brand/proprt-icon.svg" alt="" aria-hidden="true" className={`object-contain ${className}`} />;
+  return <img src={`${BASE_PATH}/brand/proprt-icon.svg`} alt="" aria-hidden="true" className={`object-contain ${className}`} />;
 }
 
 export function Eyebrow({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {

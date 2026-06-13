@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Btn } from "@/components/ui";
+import { BASE_PATH } from "@/lib/base-path";
 
 const COLS: { title: string; links: { label: string; href: string }[] }[] = [
   {
@@ -46,7 +47,7 @@ export function Footer() {
         <div className="col-span-2 md:col-span-1">
           <Link href="/" className="mb-[14px] inline-block" aria-label="Proprt home">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/brand/proprt-logo-reversed.svg" alt="Proprt" className="h-9 w-auto" />
+            <img src={`${BASE_PATH}/brand/proprt-logo-reversed.svg`} alt="Proprt" className="h-9 w-auto" />
           </Link>
           <p className="mb-5 max-w-[280px] text-[14px] leading-[1.6]">
             The real estate CRM built for agencies — listings, leads, deals and commissions in one

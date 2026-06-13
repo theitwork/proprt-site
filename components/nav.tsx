@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Btn } from "@/components/ui";
+import { BASE_PATH } from "@/lib/base-path";
 
 const LINKS = [
   { href: "/product", label: "Product" },
@@ -33,7 +34,7 @@ export function Nav() {
       <div className="mx-auto flex h-[72px] max-w-[1180px] items-center gap-8 px-6">
         <Link href="/" className="flex items-center" aria-label="Proprt home">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/brand/proprt-logo.svg" alt="Proprt" className="h-9 w-auto" />
+          <img src={`${BASE_PATH}/brand/proprt-logo.svg`} alt="Proprt" className="h-9 w-auto" />
         </Link>
 
         <nav className="hidden flex-1 gap-1 md:flex" aria-label="Main">
