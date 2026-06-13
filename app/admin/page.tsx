@@ -69,6 +69,7 @@ export default function AdminPage() {
   const [busy, setBusy] = useState(false);
   const [log, setLog] = useState<string[]>([]);
   const [query, setQuery] = useState("");
+  const [lightbox, setLightbox] = useState<{ src: string; label: string } | null>(null);
 
   useEffect(() => {
     try {
@@ -79,6 +80,17 @@ export default function AdminPage() {
       }
     } catch {}
   }, []);
+
+  useEffect(() => {
+    if (!lightbox) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setLightbox(null);
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [lightbox]);
 
   const stagedCount = Object.keys(staged).length;
   const say = (m: string) => setLog((l) => [m, ...l].slice(0, 40));
@@ -299,7 +311,12 @@ export default function AdminPage() {
                 >
                   <div className="relative aspect-[16/10] overflow-hidden bg-mist">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={previewSrc} alt={a.label} className="h-full w-full object-cover object-top" />
+                    <img
+                      src={previewSrc}
+                      alt={a.label}
+                      onClick={() => setLightbox({ src: previewSrc, label: a.label })}
+                      className="h-full w-full cursor-zoom-in object-cover object-top transition-transform duration-200 hover:scale-[1.02]"
+                    />
                     {s && (
                       <span className="absolute left-2 top-2 rounded-full bg-gold px-2 py-[2px] text-[10.5px] font-extrabold text-ink">
                         NEW
@@ -337,6 +354,35 @@ export default function AdminPage() {
           </div>
         </section>
       ))}
+
+      {lightbox && (
+        <div
+          onClick={() => setLightbox(null)}
+          className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-ink/90 p-6 backdrop-blur-md"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${lightbox.label} preview`}
+        >
+          <div className="mb-3 flex w-full max-w-[92vw] items-center gap-4 text-white">
+            <b className="truncate text-[15px]">{lightbox.label}</b>
+            <button
+              onClick={() => setLightbox(null)}
+              aria-label="Close"
+              className="ml-auto cursor-pointer rounded-full bg-white/15 px-4 py-[7px] text-[13px] font-bold transition-colors hover:bg-white/25"
+            >
+              Close ✕
+            </button>
+          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={lightbox.src}
+            alt={lightbox.label}
+            onClick={(e) => e.stopPropagation()}
+            className="max-h-[82vh] max-w-[92vw] cursor-default rounded-[10px] object-contain shadow-big"
+          />
+          <span className="mt-3 text-[12.5px] text-white/55">Click anywhere or press Esc to close</span>
+        </div>
+      )}
     </main>
   );
 }
