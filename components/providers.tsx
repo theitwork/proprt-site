@@ -57,15 +57,15 @@ export function Providers({ children }: { children: React.ReactNode }) {
           <button
             onClick={toggle}
             aria-pressed={animate}
-            title="Toggle animations"
-            className={`fixed bottom-5 right-5 z-[150] flex cursor-pointer items-center gap-2 rounded-full border px-4 py-[10px] text-[12.5px] font-bold shadow-mid backdrop-blur-md transition-colors ${
+            aria-label={animate ? "Animations on — turn off" : "Animations off — turn on"}
+            title={animate ? "Motion on" : "Motion off"}
+            className={`fixed bottom-5 right-5 z-[150] grid h-11 w-11 cursor-pointer place-items-center rounded-full border shadow-mid backdrop-blur-md transition-colors ${
               animate
                 ? "border-gold-deep/40 bg-ink/90 text-gold"
                 : "border-line-2 bg-ink/85 text-white/70 hover:text-white"
             }`}
           >
-            <Sparkles className="h-[14px] w-[14px]" />
-            {animate ? "Motion on" : "Motion off"}
+            <Sparkles className="h-[17px] w-[17px]" />
           </button>
         )}
       </MotionConfig>
