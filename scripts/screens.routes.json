@@ -1,0 +1,277 @@
+{
+  "_README": "Map each screenshot filename to its route in the live app. capture-screens.mjs navigates BASE_URL+path, runs optional prep steps, and screenshots to public/screens/<file> at 1901x990. Leave path empty to skip. prep items: {\"click\":\"sel\"} | {\"waitFor\":\"sel\"} | {\"wait\":ms}.",
+  "_example": {
+    "dashboard.png": {
+      "path": "/dashboard",
+      "prep": []
+    },
+    "deals.png": {
+      "path": "/deals",
+      "prep": [
+        {
+          "wait": 800
+        }
+      ]
+    }
+  },
+  "dashboard.png": {
+    "path": "",
+    "prep": []
+  },
+  "login-page.png": {
+    "path": "",
+    "prep": []
+  },
+  "new-dashboard.png": {
+    "path": "",
+    "prep": []
+  },
+  "properties-light.png": {
+    "path": "",
+    "prep": []
+  },
+  "properties-dark.png": {
+    "path": "",
+    "prep": []
+  },
+  "properties-selections.png": {
+    "path": "",
+    "prep": []
+  },
+  "new-property.png": {
+    "path": "",
+    "prep": []
+  },
+  "new-property-apartment.png": {
+    "path": "",
+    "prep": []
+  },
+  "new-property-land.png": {
+    "path": "",
+    "prep": []
+  },
+  "property-details-overview-1.png": {
+    "path": "",
+    "prep": []
+  },
+  "property-details-overview-2.png": {
+    "path": "",
+    "prep": []
+  },
+  "property-details-overview-3.png": {
+    "path": "",
+    "prep": []
+  },
+  "property-details-images.png": {
+    "path": "",
+    "prep": []
+  },
+  "property-details-lebanon-specs.png": {
+    "path": "",
+    "prep": []
+  },
+  "property-details-publishing.png": {
+    "path": "",
+    "prep": []
+  },
+  "property-details-published.png": {
+    "path": "",
+    "prep": []
+  },
+  "property-details-matching-leads.png": {
+    "path": "",
+    "prep": []
+  },
+  "customer-view.png": {
+    "path": "",
+    "prep": []
+  },
+  "customer-view-selection.png": {
+    "path": "",
+    "prep": []
+  },
+  "customer-view-present.png": {
+    "path": "",
+    "prep": []
+  },
+  "customer-view-comapre.png": {
+    "path": "",
+    "prep": []
+  },
+  "requests.png": {
+    "path": "",
+    "prep": []
+  },
+  "requests-pipeline-move.png": {
+    "path": "",
+    "prep": []
+  },
+  "deals.png": {
+    "path": "",
+    "prep": []
+  },
+  "contacts.png": {
+    "path": "",
+    "prep": []
+  },
+  "contacts-columns-and-actions.png": {
+    "path": "",
+    "prep": []
+  },
+  "contact-duplicates.png": {
+    "path": "",
+    "prep": []
+  },
+  "meetings.png": {
+    "path": "",
+    "prep": []
+  },
+  "meetings-new-meeting.png": {
+    "path": "",
+    "prep": []
+  },
+  "tasks.png": {
+    "path": "",
+    "prep": []
+  },
+  "taks-new-task.png": {
+    "path": "",
+    "prep": []
+  },
+  "activities.png": {
+    "path": "",
+    "prep": []
+  },
+  "activities-log-activity.png": {
+    "path": "",
+    "prep": []
+  },
+  "activities-log-activity-type.png": {
+    "path": "",
+    "prep": []
+  },
+  "worklog.png": {
+    "path": "",
+    "prep": []
+  },
+  "whatsapp.png": {
+    "path": "",
+    "prep": []
+  },
+  "whatsapp-new-template.png": {
+    "path": "",
+    "prep": []
+  },
+  "workflow.png": {
+    "path": "",
+    "prep": []
+  },
+  "workflow-new-workflow.png": {
+    "path": "",
+    "prep": []
+  },
+  "maps.png": {
+    "path": "",
+    "prep": []
+  },
+  "maps-selection.png": {
+    "path": "",
+    "prep": []
+  },
+  "commissions.png": {
+    "path": "",
+    "prep": []
+  },
+  "calculator.png": {
+    "path": "",
+    "prep": []
+  },
+  "rent-management-contract.png": {
+    "path": "",
+    "prep": []
+  },
+  "reports.png": {
+    "path": "",
+    "prep": []
+  },
+  "reports-custom-report.png": {
+    "path": "",
+    "prep": []
+  },
+  "reports-schedule.png": {
+    "path": "",
+    "prep": []
+  },
+  "team-performance.png": {
+    "path": "",
+    "prep": []
+  },
+  "team-tracking.png": {
+    "path": "",
+    "prep": []
+  },
+  "team-tracking-user-1.png": {
+    "path": "",
+    "prep": []
+  },
+  "team-tracking-user-2.png": {
+    "path": "",
+    "prep": []
+  },
+  "targets.png": {
+    "path": "",
+    "prep": []
+  },
+  "team-monitoring.png": {
+    "path": "",
+    "prep": []
+  },
+  "team-monitoring-recent.png": {
+    "path": "",
+    "prep": []
+  },
+  "tema-monitoring-new-rule.png": {
+    "path": "",
+    "prep": []
+  },
+  "documents.png": {
+    "path": "",
+    "prep": []
+  },
+  "knowledge-base.png": {
+    "path": "",
+    "prep": []
+  },
+  "knowledge-base-article.png": {
+    "path": "",
+    "prep": []
+  },
+  "administration.png": {
+    "path": "",
+    "prep": []
+  },
+  "administration-menu-1.png": {
+    "path": "",
+    "prep": []
+  },
+  "administration-menu-2.png": {
+    "path": "",
+    "prep": []
+  },
+  "my-settings.png": {
+    "path": "",
+    "prep": []
+  },
+  "notifications.png": {
+    "path": "",
+    "prep": []
+  },
+  "new.png": {
+    "path": "",
+    "prep": []
+  },
+  "error-page.png": {
+    "path": "",
+    "prep": []
+  }
+}
